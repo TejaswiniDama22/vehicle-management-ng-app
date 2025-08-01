@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app/services/user.ts"],
+  "sourcesContent": ["import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class UserService {\r\n  private baseUrl = 'http://localhost:8080/user';\r\n\r\n  constructor(private http: HttpClient) {}\r\n\r\n  register(user: any): Observable<any> {\r\n    return this.http.post(`${this.baseUrl}/register`, user);\r\n  }\r\n\r\n  login(email: string, password: string): Observable<any> {\r\n    return this.http.post(`${this.baseUrl}/login`, { email, password });\r\n  }\r\n\r\n  getCurrentUser(): Observable<any> {\r\n    const userId = localStorage.getItem('userId');\r\n    return this.http.get(`${this.baseUrl}/me/${userId}`);\r\n  }\r\n\r\n  logout(): void {\r\n    localStorage.removeItem('userId');\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;IAOa;;;;;AAPb;AACA;AAMO,IAAM,cAAN,MAAMA,aAAW;MAGF;MAFZ,UAAU;MAElB,YAAoB,MAAgB;AAAhB,aAAA,OAAA;MAAmB;MAEvC,SAAS,MAAS;AAChB,eAAO,KAAK,KAAK,KAAK,GAAG,KAAK,OAAO,aAAa,IAAI;MACxD;MAEA,MAAM,OAAe,UAAgB;AACnC,eAAO,KAAK,KAAK,KAAK,GAAG,KAAK,OAAO,UAAU,EAAE,OAAO,SAAQ,CAAE;MACpE;MAEA,iBAAc;AACZ,cAAM,SAAS,aAAa,QAAQ,QAAQ;AAC5C,eAAO,KAAK,KAAK,IAAI,GAAG,KAAK,OAAO,OAAO,MAAM,EAAE;MACrD;MAEA,SAAM;AACJ,qBAAa,WAAW,QAAQ;MAClC;;;;;AApBW,kBAAW,WAAA;MAHvB,WAAW;QACV,YAAY;OACb;OACY,WAAW;;;",
+  "names": ["UserService"]
+}

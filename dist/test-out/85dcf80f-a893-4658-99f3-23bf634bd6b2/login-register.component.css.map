@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app/components/login-register/login-register.component.css"],
+  "sourcesContent": ["\r\n.container {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 180px;\r\n}\r\n\r\n.card {\r\n  background: #f5f5f5;\r\n  padding: 30px;\r\n  border-radius: 10px;\r\n  width: 350px;\r\n  box-shadow: 0 4px 8px rgba(0,0,0,0.2);\r\n}\r\n\r\ninput {\r\n  display: block;\r\n  width: 100%;\r\n  padding: 10px;\r\n  margin-bottom: 15px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n}\r\n\r\nbutton {\r\n  width: 100%;\r\n  background: #28a745;\r\n  color: white;\r\n  padding: 10px;\r\n  border: none;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n}\r\n\r\nbutton:hover {\r\n  background: #218838;\r\n}\r\n\r\n.toggle {\r\n  color: #007bff;\r\n  cursor: pointer;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n.error small {\r\n  color: red;\r\n  font-size: 12px;\r\n}\r\n\r\n.message {\r\n  margin-top: 10px;\r\n  font-weight: bold;\r\n  color: darkred;\r\n}\r\n\r\n"],
+  "mappings": ";AACA,CAAC;AACC,WAAS;AACT,mBAAiB;AACjB,cAAY;AACd;AAEA,CAAC;AACC,cAAY;AACZ,WAAS;AACT,iBAAe;AACf,SAAO;AACP,cAAY,EAAE,IAAI,IAAI,KAAK,CAAC,EAAC,CAAC,EAAC,CAAC,EAAC;AACnC;AAEA;AACE,WAAS;AACT,SAAO;AACP,WAAS;AACT,iBAAe;AACf,iBAAe;AACf,UAAQ,IAAI,MAAM;AACpB;AAEA;AACE,SAAO;AACP,cAAY;AACZ,SAAO;AACP,WAAS;AACT,UAAQ;AACR,iBAAe;AACf,UAAQ;AACV;AAEA,MAAM;AACJ,cAAY;AACd;AAEA,CAAC;AACC,SAAO;AACP,UAAQ;AACR,cAAY;AACZ,cAAY;AACd;AACA,CAAC,MAAM;AACL,SAAO;AACP,aAAW;AACb;AAEA,CAAC;AACC,cAAY;AACZ,eAAa;AACb,SAAO;AACT;",
+  "names": []
+}

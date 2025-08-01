@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app/services/vehicle.service.ts"],
+  "sourcesContent": ["import { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class VehicleService {\r\n  private registerUrl = 'http://localhost:8080/vehicle/register';\r\n  private userVehiclesUrl = 'http://localhost:8080/vehicle/user';\r\n\r\n  constructor(private http: HttpClient) {}\r\n\r\n  registerVehicle(vehicleData: any): Observable<any> {\r\n    return this.http.post(this.registerUrl, vehicleData);\r\n  }\r\n\r\n  getUserVehicles(): Observable<any[]> {\r\n    const userId = localStorage.getItem('userId');\r\n    return this.http.get<any[]>(`${this.userVehiclesUrl}/${userId}`);\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;IAOa;;;;;AAPb;AACA;AAMO,IAAM,iBAAN,MAAMA,gBAAc;MAIL;MAHZ,cAAc;MACd,kBAAkB;MAE1B,YAAoB,MAAgB;AAAhB,aAAA,OAAA;MAAmB;MAEvC,gBAAgB,aAAgB;AAC9B,eAAO,KAAK,KAAK,KAAK,KAAK,aAAa,WAAW;MACrD;MAEA,kBAAe;AACb,cAAM,SAAS,aAAa,QAAQ,QAAQ;AAC5C,eAAO,KAAK,KAAK,IAAW,GAAG,KAAK,eAAe,IAAI,MAAM,EAAE;MACjE;;;;;AAbW,qBAAc,WAAA;MAH1B,WAAW;QACV,YAAY;OACb;OACY,cAAc;;;",
+  "names": ["VehicleService"]
+}
