@@ -1,0 +1,181 @@
+/* === BACKGROUND WRAPPER WITH DARK GLASS EFFECT === */
+.vehicle-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.9)),
+    url('https://images.unsplash.com/photo-1495435229349-e86db7bfa013?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==')
+    no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* === OUTER CARD (Glass Container) === */
+.outer-card {
+  max-width: 600px;
+  width: 100%;
+  padding: 40px 35px;
+  border-radius: 20px;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05), 0 8px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeInUp 0.8s ease;
+}
+
+/* === HEADER === */
+.outer-card h2 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #00e6e6;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.outer-card h2::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #00e6e6, #0099cc);
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+/* === FORM STYLING === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* === INPUTS & SELECT === */
+input,
+select {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color:#000;
+  font-size: 15px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23bbb' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+input:focus,
+select:focus {
+  border-color: #00e6e6;
+  box-shadow: 0 0 10px #00e6e6aa;
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.02);
+  outline: none;
+}
+
+/* === BUTTON === */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #00e6e6, #0099cc);
+  color: #111;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px #00e6e6aa;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 16px #00ffff, 0 0 30px #00e6e6;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* === ERROR MESSAGE === */
+.error {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: -8px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  .outer-card {
+    padding: 30px 20px;
+  }
+
+  .outer-card h2 {
+    font-size: 24px;
+  }
+}
+input,
+select {
+  color:#cc0000/* changed from #000 */
+}
+
+input::placeholder {
+  color: #eee; /* changed from #bbb for better contrast */
+}
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.time-slots div {
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 14px;
+}
+
+.available {
+  background-color: #00b359; /* Green */
+}
+
+.booked {
+  background-color: #cc0000; /* Red */
+}
