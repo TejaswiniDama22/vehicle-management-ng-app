@@ -107,3 +107,49 @@ Follow these simple steps to use the Vehicle Parking System:
 ---
 
 > Made with ❤️ for a smarter, more convenient parking experience.
+
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+
+<img width="1598" height="772" alt="image" src="https://github.com/user-attachments/assets/58e7e0a0-8471-4330-86d1-a6619246e90f" />
+
+<img width="1599" height="775" alt="image" src="https://github.com/user-attachments/assets/5a688691-aafb-4add-9fed-9e585ba388c7" />
+
+
+### 🔐 Login Page
+
+<img width="1597" height="740" alt="image" src="https://github.com/user-attachments/assets/b8c332f4-a044-4b5a-9392-440d2d657591" />
+
+
+
+### 📊 User Dashboard
+![Dashboard]<img width="1596" height="767" alt="image" src="https://github.com/user-attachments/assets/59827e19-af89-46ec-bfc9-dcdac80bf30f" />
+
+<img width="1592" height="770" alt="image" src="https://github.com/user-attachments/assets/e4f6a0c1-343e-436f-9240-7a298ed91487" />
+
+### 🚘 Vehicle Registration Page
+<img width="1597" height="775" alt="image" src="https://github.com/user-attachments/assets/2606cbc9-9892-475d-bdfe-3bbee39e6bca" />
+
+
+### 🅿️ Book Slot Page
+<img width="1582" height="777" alt="image" src="https://github.com/user-attachments/assets/2e2459b2-0a0d-4d5f-a734-111f8619601d" />
+
+<img width="1583" height="769" alt="image" src="https://github.com/user-attachments/assets/39a6e747-6777-4493-9d10-1391ccd34758" />
+
+### 📝 Feedback Page
+<img width="1595" height="766" alt="image" src="https://github.com/user-attachments/assets/aad88846-9f14-4dba-9778-f09cc9c586fa" />
+
+
+### 🛡️ Admin Panel
+<img width="1597" height="776" alt="image" src="https://github.com/user-attachments/assets/7e222b5f-6644-4099-956a-5c0619ded202" />
+
+<img width="1597" height="765" alt="image" src="https://github.com/user-attachments/assets/b95fee08-c609-4c36-80c3-ad01ab6bcdcb" />
+
+---
+
+
