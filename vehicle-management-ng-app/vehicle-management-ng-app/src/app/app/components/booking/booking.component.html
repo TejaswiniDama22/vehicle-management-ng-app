@@ -1,0 +1,45 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="vehicle-wrapper">
+  <div class="outer-card">
+    <h2><i class="fas fa-car-side"></i> Book Parking Slot</h2>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+      <label>User ID:</label>
+      <input type="number" formControlName="userId" placeholder="User ID" />
+
+      <label>License Plate:</label>
+      <select formControlName="licensePlate">
+        <option value="">Select License Plate</option>
+        <option *ngFor="let vehicle of vehicles" [value]="vehicle.licensePlate">
+          {{ vehicle.licensePlate }}
+        </option>
+      </select>
+
+      <label>Vehicle Type:</label>
+      <input type="text" formControlName="vehicleType" placeholder="Vehicle Type" readonly />
+
+      <label>Start Time:</label>
+      <input type="datetime-local" formControlName="start" [min]="minDateTime" />
+
+      <label>End Time:</label>
+      <input type="datetime-local" formControlName="end" [min]="minDateTime" />
+<div class="time-slots" *ngIf="bookingForm.get('start')?.value"></div>
+      <div class="time-slots">
+        <div *ngFor="let slot of generateHourlySlots()"
+             [ngClass]="{ 'booked': getAvailableCount(slot) === 0, 'available': getAvailableCount(slot) > 0 }">
+          {{ slot }} -
+          <span *ngIf="getAvailableCount(slot) > 0">
+            {{ getAvailableCount(slot) }} slot{{ getAvailableCount(slot) > 1 ? 's' : '' }} available
+          </span>
+          <span *ngIf="getAvailableCount(slot) === 0">Fully Booked</span>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+      <div class="error" *ngIf="error">{{ error }}</div>
+    </form>
+  </div>
+</div>

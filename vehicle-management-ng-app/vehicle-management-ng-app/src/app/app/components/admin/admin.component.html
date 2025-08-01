@@ -1,0 +1,110 @@
+<div class="admin-wrapper">
+  <!-- Login Form -->
+  <div *ngIf="!isLoggedIn" class="login-card">
+    <h2>🔐 Admin Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="email" formControlName="email" placeholder="email" />
+      <input type="password" formControlName="password" placeholder="password" />
+      <button type="submit">Login</button>
+      <div class="error" *ngIf="error">{{ error }}</div>
+    </form>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div *ngIf="isLoggedIn" class="admin-container">
+    <header class="admin-header">
+      <h1>🚗 Vehicle Management Admin Dashboard</h1>
+      <button class="logout-btn" (click)="onLogout()">Logout</button>
+    </header>
+
+    <nav class="admin-tabs">
+      <button [class.active]="activeTab==='users'" (click)="switchTab('users')">Users</button>
+      <button [class.active]="activeTab==='vehicles'" (click)="switchTab('vehicles')">Vehicles</button>
+      <button [class.active]="activeTab==='bookings'" (click)="switchTab('bookings')">Bookings</button>
+      <button [class.active]="activeTab==='payments'" (click)="switchTab('payments')">Payments</button>
+      <button [class.active]="activeTab==='reports'" (click)="switchTab('reports')">Reports</button>
+     
+    </nav>
+
+    <div class="content-area">
+      <div *ngIf="loading" class="loading">Loading data...</div>
+
+      <!-- Users Tab -->
+      <section *ngIf="activeTab==='users'">
+        <h2>👤 Registered Users</h2>
+        <table>
+          <tr><th>ID</th><th>Name</th><th>Email</th></tr>
+          <tr *ngFor="let u of users">
+            <td>{{u.userId}}</td><td>{{u.name}}</td><td>{{u.email}}</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Vehicles Tab -->
+      <section *ngIf="activeTab==='vehicles'">
+        <h2>🚘 Registered Vehicles</h2>
+        <table>
+          <tr><th>ID</th><th>Plate</th><th>Type</th><th>Action</th></tr>
+          <tr *ngFor="let v of vehicles">
+            <td>{{v.vehicleId}}</td><td>{{v.licensePlate}}</td><td>{{v.type}}</td>
+            <td><button (click)="deleteVehicle(v.vehicleId)">🗑️ Delete</button></td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Bookings Tab -->
+     <section *ngIf="activeTab==='bookings'">
+  <h2>📅 Bookings</h2>
+  <table>
+    <tr>
+      <th>ID</th><th>Vehicle</th><th>Start</th><th>End</th><th>Status</th><th>Actions</th>
+    </tr>
+    <tr *ngFor="let b of bookings">
+      <td>{{b.bookingId}}</td>
+      <td>{{b.vehicle?.licensePlate}}</td>
+      <td>{{b.startTime}}</td>
+      <td>{{b.endTime}}</td>
+      <td>
+        <select [value]="b.status" (change)="updateBookingStatus(b.bookingId, $any($event).target.value)">
+
+          <option value="BOOKED">BOOKED</option>
+          <option value="FAILED">FAILED</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="deleteBooking(b.bookingId)">🗑️ Delete</button>
+      </td>
+    </tr>
+  </table>
+</section>
+
+      <!-- Payments Tab -->
+      <section *ngIf="activeTab==='payments'">
+        <h2>💳 Payments</h2>
+        <table>
+          <tr><th>ID</th><th>Booking</th><th>Amount</th><th>Action</th></tr>
+          <tr *ngFor="let p of payments">
+            <td>{{p.paymentId}}</td>
+            <td>{{p.booking?.bookingId}}</td>
+            <td>₹{{p.amount}}</td>
+            <td><button (click)="deletePayment(p.paymentId)">🗑️ Delete</button></td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Reports Tab -->
+      <section *ngIf="activeTab==='reports'">
+        <h2>📝 User Reports</h2>
+        <table>
+          <tr><th>ID</th><th>User</th><th>Description</th><th>Action</th></tr>
+          <tr *ngFor="let r of reports">
+            <td>{{r.reportId}}</td>
+            <td>{{r.user?.userId}}</td>
+            <td>{{r.description}}</td>
+            <td><button (click)="deleteReport(r.reportId)">🗑️ Delete</button></td>
+          </tr>
+        </table>
+      </section>
+    </div>
+  </div>
+</div>

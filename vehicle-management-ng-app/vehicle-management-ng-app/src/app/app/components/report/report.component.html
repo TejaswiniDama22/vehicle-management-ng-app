@@ -1,0 +1,34 @@
+<div class="report-wrapper">
+  <div class="report-container">
+    <h2>Report Submission</h2>
+
+    <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+
+      <label for="userId">User ID:</label>
+      <input
+        type="number"
+        id="userId"
+        formControlName="userId"
+        placeholder="Enter your User ID"
+      />
+      <div class="error" *ngIf="reportForm.get('userId')?.touched && reportForm.get('userId')?.invalid">
+        User ID is required.
+      </div>
+
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Enter description of the issue"
+      ></textarea>
+      <div class="error" *ngIf="reportForm.get('description')?.touched && reportForm.get('description')?.invalid">
+        Description is required.
+      </div>
+
+      <button type="submit">Submit Report</button>
+
+      <div class="success" *ngIf="successMessage">{{ successMessage }}</div>
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </form>
+  </div>
+</div>

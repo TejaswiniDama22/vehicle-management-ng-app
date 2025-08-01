@@ -1,0 +1,139 @@
+<!-- Import fonts/icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+/>
+
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav mode="side" opened class="dashboard-sidenav">
+    <h2 class="logo">ParkPro</h2>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <span class="material-symbols-outlined">dashboard</span> Dashboard
+      </a>
+      <a mat-list-item routerLink="/vehicle-register" routerLinkActive="active">
+        <span class="material-symbols-outlined">directions_car</span> Vehicle Register
+      </a>
+      <a mat-list-item routerLink="/book-slot" routerLinkActive="active">
+        <span class="material-symbols-outlined">event_available</span> Book Slot
+      </a>
+      <a mat-list-item routerLink="/report" routerLinkActive="active">
+        <span class="material-symbols-outlined">analytics</span> Report
+      </a>
+      <a mat-list-item (click)="logout()">
+        <span class="material-symbols-outlined">logout</span> Logout
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="dashboard-content">
+    <mat-toolbar color="primary" class="dashboard-toolbar">
+      <span class="toolbar-title">Welcome, {{ user.name }}</span>
+    </mat-toolbar>
+
+    <div class="dashboard-section">
+
+      <!-- User Details -->
+      <h2>User Details</h2>
+      <mat-card class="info-card">
+        <p><strong>User ID:</strong> {{ user.userId }}</p>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+      </mat-card>
+
+      <!-- Registered Vehicles -->
+      <h2>Registered Vehicles</h2>
+      <ng-container *ngIf="vehicles.length > 0; else noVehicles">
+        <mat-card class="info-card" *ngFor="let vehicle of vehicles">
+          <p><strong>Vehicle ID:</strong> {{ vehicle.vehicleId }}</p>
+          <p><strong>License Plate:</strong> {{ vehicle.licensePlate }}</p>
+          <p><strong>Type:</strong> {{ vehicle.type }}</p>
+        </mat-card>
+      </ng-container>
+      <ng-template #noVehicles>
+        <mat-card class="info-card">
+          <p>No registered vehicles found.</p>
+        </mat-card>
+      </ng-template>
+
+      <!-- Booking Details -->
+      <h2>Booking Details</h2>
+      <ng-container *ngIf="bookings.length > 0; else noBookings">
+        <mat-card class="info-card" *ngFor="let booking of bookings">
+          <p><strong>Booking ID:</strong> {{ booking.bookingId }}</p>
+          <p><strong>Vehicle Type:</strong> {{ booking.vehicleType }}</p>
+          <p><strong>License Plate:</strong> {{ booking.licensePlate }}</p>
+          <p><strong>Start:</strong> {{ booking.start }}</p>
+          <p><strong>End:</strong> {{ booking.end }}</p>
+
+          <p><strong>Booking Status:</strong>
+            <ng-container [ngSwitch]="booking.status">
+              <span *ngSwitchCase="'BOOKED'">✅ Booked</span>
+              <span *ngSwitchCase="'FAILED'">❌ Failed</span>
+              <span *ngSwitchDefault>⏳ Pending For Admin Approval</span>
+            </ng-container>
+          </p>
+
+          <p><strong>Payment Status:</strong>
+            <span *ngIf="booking.paymentStatus === 'PAID'">✅ Paid</span>
+            <span *ngIf="booking.paymentStatus !== 'PAID'">⏳ Payment Pending</span>
+          </p>
+
+          <!-- Payment Button Conditions -->
+          <ng-container *ngIf="booking.status === 'BOOKED'">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="makePayment(booking)"
+              [disabled]="booking.paymentStatus === 'PAID'"
+            >
+              💳 Make Payment
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="booking.status === 'FAILED'">
+            <button mat-raised-button color="warn" disabled>
+              ❌ Payment Not Allowed
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="booking.status !== 'BOOKED' && booking.status !== 'FAILED'">
+            <button mat-raised-button disabled>
+              ⏳ Waiting For Approval
+            </button>
+          </ng-container>
+        </mat-card>
+      </ng-container>
+
+      <ng-template #noBookings>
+        <mat-card class="info-card">
+          <p>No bookings found.</p>
+        </mat-card>
+      </ng-template>
+
+      <!-- Last Payment Summary -->
+      <ng-container *ngIf="lastPayment">
+        <h2>Last Payment Summary</h2>
+        <mat-card class="info-card">
+          <ng-container *ngIf="lastPayment.paymentId; else pendingOnly">
+            <p><strong>Payment ID:</strong> {{ lastPayment.paymentId }}</p>
+            <p><strong>Booking ID:</strong> {{ lastPayment.bookingId }}</p>
+            <p><strong>Amount:</strong> ₹{{ lastPayment.amount }}</p>
+            <p><strong>Status:</strong>
+              <span *ngIf="lastPayment.status === 'PAID'">✅ Paid</span>
+              <span *ngIf="lastPayment.status !== 'PAID'">⏳ Payment Pending</span>
+            </p>
+          </ng-container>
+          <ng-template #pendingOnly>
+            <p><strong>Status:</strong> ⏳ Payment Pending</p>
+          </ng-template>
+        </mat-card>
+      </ng-container>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

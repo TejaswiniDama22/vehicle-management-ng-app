@@ -1,0 +1,37 @@
+<div class="vehicle-wrapper">
+  <div class="container">
+    <div class="card">
+   <h2><i class="fas fa-car-side"></i> Vehicle Registration</h2>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+      <form [formGroup]="vehicleForm" (ngSubmit)="registerVehicle()">
+        <input type="number" formControlName="userId" placeholder="User ID" />
+        <div class="error" *ngIf="vehicleForm.get('userId')?.touched && vehicleForm.get('userId')?.invalid">
+          <small>User ID is required</small>
+        </div>
+
+        <input type="text" formControlName="licensePlate" placeholder="License Plate (e.g., TS09AB1234)" />
+        <div class="error" *ngIf="vehicleForm.get('licensePlate')?.touched && vehicleForm.get('licensePlate')?.invalid">
+          <small *ngIf="vehicleForm.get('licensePlate')?.errors?.['required']">License plate is required.</small>
+          <small *ngIf="vehicleForm.get('licensePlate')?.errors?.['pattern']">Invalid license plate format.</small>
+        </div>
+
+        <!-- Dropdown for Vehicle Type -->
+        <select formControlName="vehicleType">
+          <option value="" disabled selected>Select Vehicle Type</option>
+          <option value="Car">Car</option>
+          <option value="Bike">Bike</option>
+        </select>
+        <div class="error" *ngIf="vehicleForm.get('vehicleType')?.touched && vehicleForm.get('vehicleType')?.invalid">
+          <small>Vehicle type is required.</small>
+        </div>
+
+        <button type="submit">Register Vehicle</button>
+      </form>
+
+      <p class="message">{{ message }}</p>
+    </div>
+  </div>
+</div>
